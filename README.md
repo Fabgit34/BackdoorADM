@@ -7,3 +7,7 @@ Script HID pour avoir un ReverseShell sur une session avec des droits d'administ
 
 > ⚖️ **Attention** : Ce projet est fourni uniquement à des fins éducatives.  
 > Veuillez lire le fichier [LICENCE](./LICENCE) pour connaître les conditions d'utilisation.
+
+
+## Remerciements
+[Mimikatz](https://github.com/gentilkiwi/mimikatz) 
