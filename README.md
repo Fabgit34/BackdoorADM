@@ -1,4 +1,4 @@
-![logo](./logo.png) 
+![logo](./logo.jpg) 
 
 # BackdoorADM
 Script HID pour avoir un ReverseShell sur une session avec des droit d'administrateur LOCAL. 
