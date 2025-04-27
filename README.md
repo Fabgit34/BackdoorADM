@@ -1,7 +1,7 @@
 ![logo](./logo.jpg) 
 
 # BackdoorADM
-Script HID pour avoir un ReverseShell sur une session avec des droit d'administrateur LOCAL. 
+Script HID pour avoir un ReverseShell sur une session avec des droits d'administrateur LOCAL. 
 
 [Backdooradm](./Backdooradm)
 
